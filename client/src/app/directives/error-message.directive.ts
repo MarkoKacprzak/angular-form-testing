@@ -45,7 +45,9 @@ export class ErrorMessageDirective implements OnInit {
 
   private control?: AbstractControl;
 
-  constructor(@Optional() private controlContainer?: ControlContainer) {}
+  constructor(@Optional() 
+  private controlContainer?: ControlContainer) {
+  }
 
   public ngOnInit(): void {
     this.control = findFormControl(
@@ -53,7 +55,11 @@ export class ErrorMessageDirective implements OnInit {
       this.formControlName,
       this.controlContainer,
     );
+    if (this.formControlName){
+    const controlFromName = this.controlContainer?.control?.get(this.formControlName);
+    }
   }
+    
 
   /**
    * Whether link to the errors is established.

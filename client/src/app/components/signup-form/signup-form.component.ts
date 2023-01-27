@@ -25,6 +25,7 @@ import {
   Plan,
   SignupService,
 } from 'src/app/services/signup.service';
+import { addressLine2 } from 'src/app/spec-helpers/signup-data.spec-helper';
 
 const { email, maxLength, pattern, required, requiredTrue } = Validators;
 
@@ -74,7 +75,7 @@ export class SignupFormComponent {
     address: this.formBuilder.group({
       name: ['', required],
       addressLine1: [''],
-      addressLine2: ['', required],
+      addressLine2: ['', required ],// addressLine2: [{value: '', disabled: true}, required ],
       city: ['', required],
       postcode: ['', required],
       region: [''],
@@ -82,8 +83,16 @@ export class SignupFormComponent {
     }),
   });
 
+  test(){
+    console.log(this.form);
+    console.log(this.form.value);
+    console.log(this.form.getRawValue());
+   // this.addressLineLast.disable();
+  }
+
   public plan = this.form.controls.plan;
   public addressLine1 = (this.form.controls.address as FormGroup).controls.addressLine1;
+  public addressLineLast = (this.form.controls.address as FormGroup).controls.addressLine2;
 
   public passwordStrength?: PasswordStrength;
 

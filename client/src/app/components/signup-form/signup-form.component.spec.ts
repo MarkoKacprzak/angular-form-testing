@@ -139,7 +139,7 @@ describe('SignupFormComponent', () => {
   it('handles signup failure', fakeAsync(async () => {
     await setup({
       // Let the API report a failure
-      signup: throwError(new Error('Validation failed')),
+      signup: throwError(() => new Error('Validation failed')),
     });
 
     fillForm();
